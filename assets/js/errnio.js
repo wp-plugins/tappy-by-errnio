@@ -219,7 +219,7 @@
 		url : errniowp.ajax_url,
 		type : 'post',
 		data : {
-			'action': 'errnio_register',
+			'action': 'tappy_by_errnio_register',
 			'tag_id': data.tagId,
 			'type': data.type
 		},
