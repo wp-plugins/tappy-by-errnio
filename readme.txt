@@ -47,7 +47,7 @@ Using the unique **errnio** plugin maximizes your full engagement and monetizati
 * Reach "Best of Brand" user experience levels and bring your site to par with the best sites out there. 
 * Create a new monetization stream with non-intrusive, intent-driven promotions and offers. 
 * Customize your selection of features to fit your site requirements.
-* Gain useful insights using our analytics for gestures (coming soon)
+* Gain useful insights using our analytics for gestures.
 * Works on all leading mobile platforms, browsers and devices. 
 
 Make sure to sign up to our service to gain access to:
