@@ -2,7 +2,7 @@
   'use strict';
 
   var domParts,
-    queryParams = {};
+      queryParams = {};
 
   $(function () {  //Entry Point
     domParts = {
@@ -21,9 +21,9 @@
       submitSiteId: $("#submitSiteId")
     };
 
-	queryParams['tagId'] = $('#register').parent().attr('data-tagId');
-	queryParams['installName'] = $('#register').parent().attr('data-installName');
-		
+    queryParams['tagId'] = $('#register').parent().attr('data-tagId');
+    queryParams['installName'] = $('#register').parent().attr('data-installName');
+
     domParts.submitRegister.on('click', onSendRegisterForm);
 
     $('#register').find('.fields > input').on('keydown', function(ev){
@@ -215,17 +215,17 @@
   }
 
   function postMessageToWP (data) {
-	$.ajax({
-		url : errniowp.ajax_url,
-		type : 'post',
-		data : {
-			'action': 'errnio_register',
-			'tag_id': data.tagId,
-			'type': data.type
-		},
-		success : function( response ) {
-		}
-	});
+    $.ajax({
+      url : errniowp.ajax_url,
+      type : 'post',
+      data : {
+        'action': 'tappy_by_errnio_register',
+        'tag_id': data.tagId,
+        'type': data.type
+      },
+      success : function( response ) {
+      }
+    });
   }
 
   function onModalClick(e) {

@@ -243,4 +243,4 @@ function tappy_by_errnio_register_callback() {
 add_action('admin_menu', 'tappy_by_errnio_add_settings_menu_option');
 add_filter('plugin_action_links', 'tappy_by_errnio_add_settings_link_on_plugin', 10, 2);
 add_action('admin_notices', 'tappy_by_errnio_admin_notice');
-add_action('wp_ajax_errnio_register', 'tappy_by_errnio_register_callback');
+add_action('wp_ajax_tappy_by_errnio_register', 'tappy_by_errnio_register_callback');
