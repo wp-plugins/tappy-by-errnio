@@ -59,7 +59,6 @@ Make sure to sign up to our service to gain access to:
 
 == Installation ==
 
-
 Installing the errnio Tappy plugin is super easy.
 Here's a quick, easy step by step installation <a href="http://errnio.com/WP/wordpress-instructions.pdf" target="_blank">guide</a>
 
