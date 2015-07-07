@@ -24,7 +24,7 @@ define('ERRNIO_TAGTYPE_PERM', 'permanent');
 
 /***** Utils ******/
 
-function errnio_do_curl_request($url, $data) {
+function tappy_by_errnio_do_curl_request($url, $data) {
 	$data = json_encode( $data );
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
@@ -37,23 +37,23 @@ function errnio_do_curl_request($url, $data) {
 	return json_decode($response);
 }
 
-function errnio_send_event($eventType) {
+function tappy_by_errnio_send_event($eventType) {
 	$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
 	if ($tagId) {
 		$urlpre = 'http://customer.errnio.com';
 	 	$createTagUrl = $urlpre.'/sendEvent';
 
 	 	$params = array('tagId' => $tagId, 'eventName' => $eventType);
-	 	$response = errnio_do_curl_request($createTagUrl, $params);
+	 	$response = tappy_by_errnio_do_curl_request($createTagUrl, $params);
 	}
 	// No tagId - no point sending an event
 }
 
-function errnio_mobile_gestures_create_tagid() {
+function tappy_by_errnio_create_tagid() {
 	$urlpre = 'http://customer.errnio.com';
  	$createTagUrl = $urlpre.'/createTag';
  	$params = array('installerName' => ERRNIO_INSTALLER_NAME);
- 	$response = errnio_do_curl_request($createTagUrl, $params);
+ 	$response = tappy_by_errnio_do_curl_request($createTagUrl, $params);
 
 	if ($response && $response->success) {
 		$tagId = $response->tagId;
@@ -61,66 +61,66 @@ function errnio_mobile_gestures_create_tagid() {
 	 	add_option(ERRNIO_OPTION_NAME_TAGTYPE, ERRNIO_TAGTYPE_TEMP);
 		return $tagId;
 	}
-	
+
 	return NULL;
 }
 
-function errnio_check_need_register() {
+function tappy_by_errnio_check_need_register() {
 	$tagtype = get_option(ERRNIO_OPTION_NAME_TAGTYPE);
 	$needregister = true;
-	
+
 	if ($tagtype == ERRNIO_TAGTYPE_PERM) {
 		$needregister = false;
 	}
-	
+
 	return $needregister;
 }
 
 /***** Activation / Deactivation / Uninstall hooks ******/
 
-function errnio_mobile_gestures_activate() {
+function tappy_by_errnio_activate() {
 	if ( ! current_user_can( 'activate_plugins' ) )
 	        return;
-	
+
 	$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
 
 	if ( $tagId === FALSE || empty($tagId) ) {
 		// First time activation
-		$tagId = errnio_mobile_gestures_create_tagid();
+		$tagId = tappy_by_errnio_create_tagid();
 	} else {
 		// Previously activated - meaning tagType + tagId should exists
 	}
-	
+
 	// Send event - activated
-	errnio_send_event(ERRNIO_EVENT_NAME_ACTIVATE);
+	tappy_by_errnio_send_event(ERRNIO_EVENT_NAME_ACTIVATE);
 }
 
-function errnio_mobile_gestures_deactivate() {
+function tappy_by_errnio_deactivate() {
 	if ( ! current_user_can( 'activate_plugins' ) )
 	        return;
-	
+
 	// Send event - deactivated
-	errnio_send_event(ERRNIO_EVENT_NAME_DEACTIVATE);
+	tappy_by_errnio_send_event(ERRNIO_EVENT_NAME_DEACTIVATE);
 }
 
-function errnio_mobile_gestures_uninstall() {
+function tappy_by_errnio_uninstall() {
 	if ( ! current_user_can( 'activate_plugins' ) )
 	        return;
-	
+
 	// Send event - uninstall
-	errnio_send_event(ERRNIO_EVENT_NAME_UNINSTALL);	
-	
+	tappy_by_errnio_send_event(ERRNIO_EVENT_NAME_UNINSTALL);
+
 	delete_option(ERRNIO_OPTION_NAME_TAGID);
 	delete_option(ERRNIO_OPTION_NAME_TAGTYPE);
 }
 
-register_activation_hook( __FILE__, 'errnio_mobile_gestures_activate' );
-register_deactivation_hook( __FILE__, 'errnio_mobile_gestures_deactivate' );
-register_uninstall_hook( __FILE__, 'errnio_mobile_gestures_uninstall' );
+register_activation_hook( __FILE__, 'tappy_by_errnio_activate' );
+register_deactivation_hook( __FILE__, 'tappy_by_errnio_deactivate' );
+register_uninstall_hook( __FILE__, 'tappy_by_errnio_uninstall' );
 
 /***** Client side script load ******/
 
-function errnio_mobile_gestures_load_client_script() {
+function tappy_by_errnio_load_client_script() {
 	$list = 'enqueued';
 	$handle = 'errnio_script';
 
@@ -132,7 +132,7 @@ function errnio_mobile_gestures_load_client_script() {
 	$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
 
 	if (!$tagId || empty($tagId)) {
-		$tagId = errnio_mobile_gestures_create_tagid();
+		$tagId = tappy_by_errnio_create_tagid();
 	}
 
 	if ($tagId) {
@@ -142,7 +142,7 @@ function errnio_mobile_gestures_load_client_script() {
 	}
 }
 
-function errnio_mobile_gestures_load_client_script_add_async_attr( $url ) {
+function tappy_by_errnio_load_client_script_add_async_attr( $url ) {
 	if(FALSE === strpos( $url, 'service2.errnio.com')){
 		return $url;
 	}
@@ -150,23 +150,23 @@ function errnio_mobile_gestures_load_client_script_add_async_attr( $url ) {
 	return "$url' async='async";
 }
 
-add_filter('clean_url', 'errnio_mobile_gestures_load_client_script_add_async_attr', 11, 1);
-add_action('wp_enqueue_scripts', 'errnio_mobile_gestures_load_client_script', 99999 );
+add_filter('clean_url', 'tappy_by_errnio_load_client_script_add_async_attr', 11, 1);
+add_action('wp_enqueue_scripts', 'tappy_by_errnio_load_client_script', 99999 );
 
 /***** Admin ******/
 
-function errnio_mobile_gestures_add_settings_menu_option() {
+function tappy_by_errnio_add_settings_menu_option() {
     add_menu_page (
         'Errnio Options',
         'Errnio Settings',
         'manage_options',
         'errnio-options',
-        'errnio_mobile_gestures_admin_page',
+        'tappy_by_errnio_admin_page',
 		'dashicons-smartphone'
     );
 }
 
-function errnio_mobile_gestures_add_settings_link_on_plugin($links, $file) {
+function tappy_by_errnio_add_settings_link_on_plugin($links, $file) {
     static $this_plugin;
 
     if (!$this_plugin) {
@@ -182,16 +182,16 @@ function errnio_mobile_gestures_add_settings_link_on_plugin($links, $file) {
     return $links;
 }
 
-function errnio_mobile_gestures_admin_notice() {
-	$needregister = errnio_check_need_register();
+function tappy_by_errnio_admin_notice() {
+	$needregister = tappy_by_errnio_check_need_register();
 	$settingsurl = admin_url( 'admin.php?page=errnio-options' );
-	
+
 	if($needregister){
 		echo( '<div class="error" style="font-weight:bold;font-size=22px;color:red;"> <p>Please register your site in the errnio settings section <a href="'.$settingsurl.'">here</a>.</p> </div>');
 	}
 }
 
-function errnio_mobile_gestures_admin_page() {
+function tappy_by_errnio_admin_page() {
 	$stylehandle = 'errnio-style';
 	$jshandle = 'errnio-js';
 	wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Exo+2:700,400,200,700italic,300italic,300');
@@ -204,7 +204,7 @@ function errnio_mobile_gestures_admin_page() {
     ?>
     <div class="wrap">
 		<?php
-		$needregister = errnio_check_need_register();
+		$needregister = tappy_by_errnio_check_need_register();
 		$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
 
 		echo '<h2>Errnio Options</h2>';
@@ -226,7 +226,7 @@ function errnio_mobile_gestures_admin_page() {
     <?php
 }
 
-function errnio_register_callback() {
+function tappy_by_errnio_register_callback() {
 	$type = $_POST['type'];
 	$tagId = $_POST['tag_id'];
 
@@ -239,7 +239,7 @@ function errnio_register_callback() {
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
 
-add_action('admin_menu', 'errnio_mobile_gestures_add_settings_menu_option');
-add_filter('plugin_action_links', 'errnio_mobile_gestures_add_settings_link_on_plugin', 10, 2);
-add_action('admin_notices', 'errnio_mobile_gestures_admin_notice');
-add_action('wp_ajax_errnio_register', 'errnio_register_callback');
+add_action('admin_menu', 'tappy_by_errnio_add_settings_menu_option');
+add_filter('plugin_action_links', 'tappy_by_errnio_add_settings_link_on_plugin', 10, 2);
+add_action('admin_notices', 'tappy_by_errnio_admin_notice');
+add_action('wp_ajax_errnio_register', 'tappy_by_errnio_register_callback');
