@@ -8,7 +8,7 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Tappy offers your mobile site visitors useful site and web information on any text selection they perform, enhancing experience, content circulation and overall usefulness of your mobile site. 
+Tappy offers your mobile site visitors useful web information on any text selection they perform, enhancing your mobile site experience. 
 
 
 == Description ==
