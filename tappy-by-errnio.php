@@ -10,17 +10,17 @@ Author URI: http://errnio.com
 
 /***** Constants ******/
 
-define('ERRNIO_INSTALLER_NAME', 'wordpress_tappy_by_errnio');
+define('TAPPY_BY_ERRNIO_INSTALLER_NAME', 'wordpress_tappy_by_errnio');
 
-define('ERRNIO_OPTION_NAME_TAGID', 'errnio_id');
-define('ERRNIO_OPTION_NAME_TAGTYPE', 'errnio_id_type');
+define('TAPPY_BY_ERRNIO_OPTION_NAME_TAGID', 'errnio_id');
+define('TAPPY_BY_ERRNIO_OPTION_NAME_TAGTYPE', 'errnio_id_type');
 
-define('ERRNIO_EVENT_NAME_ACTIVATE', 'wordpress_activated');
-define('ERRNIO_EVENT_NAME_DEACTIVATE', 'wordpress_deactivated');
-define('ERRNIO_EVENT_NAME_UNINSTALL', 'wordpress_uninstalled');
+define('TAPPY_BY_ERRNIO_EVENT_NAME_ACTIVATE', 'wordpress_activated');
+define('TAPPY_BY_ERRNIO_EVENT_NAME_DEACTIVATE', 'wordpress_deactivated');
+define('TAPPY_BY_ERRNIO_EVENT_NAME_UNINSTALL', 'wordpress_uninstalled');
 
-define('ERRNIO_TAGTYPE_TEMP', 'temporary');
-define('ERRNIO_TAGTYPE_PERM', 'permanent');
+define('TAPPY_BY_ERRNIO_TAGTYPE_TEMP', 'temporary');
+define('TAPPY_BY_ERRNIO_TAGTYPE_PERM', 'permanent');
 
 /***** Utils ******/
 
@@ -39,7 +39,7 @@ function tappy_by_errnio_do_post_request($url, $data) {
 }
 
 function tappy_by_errnio_send_event($eventType) {
-	$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
+	$tagId = get_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID);
 	if ($tagId) {
 		$urlpre = 'http://customer.errnio.com';
 	 	$createTagUrl = $urlpre.'/sendEvent';
@@ -53,13 +53,13 @@ function tappy_by_errnio_send_event($eventType) {
 function tappy_by_errnio_create_tagid() {
 	$urlpre = 'http://customer.errnio.com';
  	$createTagUrl = $urlpre.'/createTag';
- 	$params = array('installerName' => ERRNIO_INSTALLER_NAME);
+ 	$params = array('installerName' => TAPPY_BY_ERRNIO_INSTALLER_NAME);
  	$response = tappy_by_errnio_do_post_request($createTagUrl, $params);
 
 	if ($response && $response->success) {
 		$tagId = $response->tagId;
-		add_option(ERRNIO_OPTION_NAME_TAGID, $tagId);
-	 	add_option(ERRNIO_OPTION_NAME_TAGTYPE, ERRNIO_TAGTYPE_TEMP);
+		add_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID, $tagId);
+	 	add_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGTYPE, TAPPY_BY_ERRNIO_TAGTYPE_TEMP);
 		return $tagId;
 	}
 
@@ -67,10 +67,10 @@ function tappy_by_errnio_create_tagid() {
 }
 
 function tappy_by_errnio_check_need_register() {
-	$tagtype = get_option(ERRNIO_OPTION_NAME_TAGTYPE);
+	$tagtype = get_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGTYPE);
 	$needregister = true;
 
-	if ($tagtype == ERRNIO_TAGTYPE_PERM) {
+	if ($tagtype == TAPPY_BY_ERRNIO_TAGTYPE_PERM) {
 		$needregister = false;
 	}
 
@@ -83,7 +83,7 @@ function tappy_by_errnio_activate() {
 	if ( ! current_user_can( 'activate_plugins' ) )
 	        return;
 
-	$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
+	$tagId = get_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID);
 
 	if ( $tagId === FALSE || empty($tagId) ) {
 		// First time activation
@@ -93,7 +93,7 @@ function tappy_by_errnio_activate() {
 	}
 
 	// Send event - activated
-	tappy_by_errnio_send_event(ERRNIO_EVENT_NAME_ACTIVATE);
+	tappy_by_errnio_send_event(TAPPY_BY_ERRNIO_EVENT_NAME_ACTIVATE);
 }
 
 function tappy_by_errnio_deactivate() {
@@ -101,7 +101,7 @@ function tappy_by_errnio_deactivate() {
 	        return;
 
 	// Send event - deactivated
-	tappy_by_errnio_send_event(ERRNIO_EVENT_NAME_DEACTIVATE);
+	tappy_by_errnio_send_event(TAPPY_BY_ERRNIO_EVENT_NAME_DEACTIVATE);
 }
 
 function tappy_by_errnio_uninstall() {
@@ -109,10 +109,10 @@ function tappy_by_errnio_uninstall() {
 	        return;
 
 	// Send event - uninstall
-	tappy_by_errnio_send_event(ERRNIO_EVENT_NAME_UNINSTALL);
+	tappy_by_errnio_send_event(TAPPY_BY_ERRNIO_EVENT_NAME_UNINSTALL);
 
-	delete_option(ERRNIO_OPTION_NAME_TAGID);
-	delete_option(ERRNIO_OPTION_NAME_TAGTYPE);
+	delete_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID);
+	delete_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGTYPE);
 }
 
 register_activation_hook( __FILE__, 'tappy_by_errnio_activate' );
@@ -130,7 +130,7 @@ function tappy_by_errnio_load_client_script() {
 		return;
 	}
 
-	$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
+	$tagId = get_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID);
 
 	if (!$tagId || empty($tagId)) {
 		$tagId = tappy_by_errnio_create_tagid();
@@ -206,7 +206,7 @@ function tappy_by_errnio_admin_page() {
     <div class="wrap">
 		<?php
 		$needregister = tappy_by_errnio_check_need_register();
-		$tagId = get_option(ERRNIO_OPTION_NAME_TAGID);
+		$tagId = get_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID);
 
 		echo '<h2>Errnio Options</h2>';
 
@@ -214,7 +214,7 @@ function tappy_by_errnio_admin_page() {
 			echo '<div class="bold"><p>Your new errnio plugin is up and running.<br/>For configuration and reports please visit your dashboard at <a href="http://brutus.errnio.com/">brutus.errnio.com</a></p><br/><img src="'.plugins_url('assets/img/logo-366x64.png', __FILE__).'"/></div>';
 		} else {
 			if ($tagId) {
-				echo '<div class="errnio" height="100%" width="100%" data-tagId="'.$tagId.'" data-installName="'.ERRNIO_INSTALLER_NAME.'">';
+				echo '<div class="errnio" height="100%" width="100%" data-tagId="'.$tagId.'" data-installName="'.TAPPY_BY_ERRNIO_INSTALLER_NAME.'">';
 				include 'assets/includes/errnio-admin.php';
 				echo '</div>';
 			} else {
@@ -232,10 +232,10 @@ function tappy_by_errnio_register_callback() {
 	$tagId = $_POST['tag_id'];
 
 	if ($type == 'switchTag') {
-		update_option(ERRNIO_OPTION_NAME_TAGID, $tagId);
+		update_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID, $tagId);
 	}
 
-	update_option(ERRNIO_OPTION_NAME_TAGTYPE, ERRNIO_TAGTYPE_PERM);
+	update_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGTYPE, TAPPY_BY_ERRNIO_TAGTYPE_PERM);
 
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
