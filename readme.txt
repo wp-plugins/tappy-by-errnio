@@ -16,7 +16,7 @@ Tappy offers your mobile site visitors useful site and web information on any te
 **Tappy** by **errnio** adds a new engagement layer to your site with an addition of informative and action features on any mobile text selection on site text. With every finger long tap, which selects text on your mobile site, Tappy adds several buttons and informative content layers above and below the selected text - buttons to share or search, as well as word definition above and recommended search/content below. This tool enhances user experience, engaging your visitors with your content on mobile. errnio can increase your pages per visit, time spent on site, and improve your over site engagement on mobile. Our plugin automatically scans all articles read on your site, and offers users an intuitive search and content of your popular, top, contextual articles with regards to the words selected.
 
 No additional integration is required, and with a simple plugin we have all we need to make your users more engagement on your site, with a great mobile user experience of your content.
-In addition, without adding **ads** or **banners**, errnio can enhance your revenue. Make **more** money from your site with **no more** banners or ads. No more pushy advertising, be part of the revolution. On our **swipy** plugin we can integrate recommended content from around the web, to enhance your site revenue.  
+In addition, without adding **ads** or **banners**, errnio can enhance your revenue. Make **more** money from your site with **no more** banners or ads. No more pushy advertising, be part of the revolution.
 See more about our features and how our product works at <a href="http://errnio.com" target="_blank">errnio.com</a>
 
 = Features =
@@ -39,7 +39,7 @@ To be eligible for our revenue program please make sure register with us.
 = How it Works =
 
 The **errnio plugin** reaches out to errnio servers and includes the errnio **gesture recognition code**. The gesture recognition code taps into your visitor gestures, performed on your site, and analyses which errnio engagement action or monetization unit will work effectively. errnio works with various 3rd party advertisers by connecting the right offers to the right gesture in the right context in and the right time - **ONLY** and **EXCLUSIVELY** within the errnio gesture functions. We never inject ads into your site!
-Using the unique **errnio** plugin maximizes your full engagement and monetization potential on mobile web with no banners or taking any more of your site real-estate. **Swipy** senses finger gesture actions users perform, and offers up your content gallery upon a certain swipe left command, while also disabling any other zoom or scroll gesture axes when engaging the user with the swipe gallery. 
+Using the unique **errnio** plugin maximizes your full engagement and monetization potential on mobile web with no banners or taking any more of your site real-estate.
 
 = Advantages =
 
