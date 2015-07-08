@@ -3,7 +3,7 @@
 Plugin Name: Tappy by errnio
 Plugin URI: http://errnio.com
 Description: Tappy offers your mobile site visitors useful web information on any text selection they perform, enhancing your mobile site experience.
-Version: 1.0
+Version: 1.1
 Author: Errnio
 Author URI: http://errnio.com
 */
