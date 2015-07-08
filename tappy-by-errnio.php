@@ -24,18 +24,15 @@ define('TAPPY_BY_ERRNIO_TAGTYPE_PERM', 'permanent');
 
 /***** Utils ******/
 
-function tappy_by_errnio_do_post_request($url, $data) {
-    $data = json_encode( $data );
-    $opts = array('http' =>
-        array(
-            'method'  => 'POST',
-            'header'  => 'Content-type: application/json',
-            'content' => $data
-        )
-    );
-    $context = stream_context_create($opts);
-    $response = file_get_contents($url, false, $context);
-    return json_decode($response);
+function tappy_by_errnio_do_wp_post_request($url, $data) {
+	$data = json_encode( $data );
+	$header = array('Content-type' => 'application/json');
+	$response = wp_remote_post($url, array(
+	    'headers' => $header,
+	    'body' => $data
+	));
+
+	return json_decode(wp_remote_retrieve_body($response));
 }
 
 function tappy_by_errnio_send_event($eventType) {
@@ -45,7 +42,7 @@ function tappy_by_errnio_send_event($eventType) {
 	 	$createTagUrl = $urlpre.'/sendEvent';
 
 	 	$params = array('tagId' => $tagId, 'eventName' => $eventType);
-	 	$response = tappy_by_errnio_do_post_request($createTagUrl, $params);
+	 	$response = tappy_by_errnio_do_wp_post_request($createTagUrl, $params);
 	}
 	// No tagId - no point sending an event
 }
@@ -54,7 +51,7 @@ function tappy_by_errnio_create_tagid() {
 	$urlpre = 'http://customer.errnio.com';
  	$createTagUrl = $urlpre.'/createTag';
  	$params = array('installerName' => TAPPY_BY_ERRNIO_INSTALLER_NAME);
- 	$response = tappy_by_errnio_do_post_request($createTagUrl, $params);
+ 	$response = tappy_by_errnio_do_wp_post_request($createTagUrl, $params);
 
 	if ($response && $response->success) {
 		$tagId = $response->tagId;
