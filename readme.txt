@@ -1,7 +1,7 @@
 === Tappy by errnio ===
 
 Contributors: errnio
-Tags: tap, tappy, text, text selection, mobile, engagement, gesture, bounce rate, time spent, increase traffic, content recommendation, errnio, social, images, pages, media, photos, plugin, twitter, facebook, content, wordpress, sharing, share, social media buttons, whatsapp, email,MailChimp, Aweber, Infusionsoft, Mad Mimi, Campaign Monitor, constant contact,  GetResponse, Eloqua,  ActiveCampaign, MyEmma, Infusionsoft, Feedblitz, HubSpot, Sailthru, Vero, Zapier, Ontraport, Pardot, Klaviyo, popup, exit intent, growth, subscribers, twitter, share, social plugin,  social sharing, subscription, email form, share,  sharing, social , social media buttons , links, click to tweet ,  analytics , newsletter,  widget,lightbox, analytics, newsletter, newsletter, Facebook, floating social buttons, google plus, image bookmarking, Image sharing,  pinterest plugin, pintrest, share image,   sharebar, sharing, social bookmarking, social plugin, sms, tweet button,  heat map, heatmaps, share bar, contact form, scroll box, content analytics, inbound marketing, mailing list, share buttons
+Tags: Tap, Tappy, text selection, right click, curio, gesture, analytics, bounce rate, click to tweet, content, content analytics, content recommendation, engagement, errnio, exit-intent, Facebook, social buttons, growth, heat map, heatmaps, increase traffic, mobile, mobile web, plugin, scroll box, Share, share bar, share buttons, share image, sharebar, sharing, social, social media buttons, social plugin, social sharing, time spent, tweet button, twitter, whatsapp, widget, wordpress, wikipedia, definition
 Requires at least: 3.0  
 Tested up to: 4.2.2
 Stable tag: 1.1
