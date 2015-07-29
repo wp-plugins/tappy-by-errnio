@@ -155,12 +155,13 @@ add_action('wp_enqueue_scripts', 'tappy_by_errnio_load_client_script', 99999 );
 
 function tappy_by_errnio_add_settings_menu_option() {
     add_menu_page (
-        'Errnio Options',
-        'Errnio Settings',
-        'manage_options',
-        'errnio-options',
-        'tappy_by_errnio_admin_page',
-		'dashicons-smartphone'
+        'Errnio Options',   //page title
+        'Errnio Settings',  //menu title
+        'manage_options',   //capability
+        'errnio-options',   //menu_slug
+        'gestures_by_errnio_admin_page',  //function
+        plugin_dir_url( __FILE__ ) . '/assets/img/errnio-icon.png'  //icon_url
+        //There is another parameter - position
     );
 }
 
@@ -185,7 +186,7 @@ function tappy_by_errnio_admin_notice() {
 	$settingsurl = admin_url( 'admin.php?page=errnio-options' );
 
 	if($needregister){
-		echo( '<div class="error" style="font-weight:bold;font-size=22px;color:red;"> <p>Please register your site in the errnio settings section <a href="'.$settingsurl.'">here</a>.</p> </div>');
+		echo('<div style="font-weight: bold; background-color: #7ad03a; padding: 1px 12px; box-shadow: 0 1px 1px 0 rgba(0,0,0,.1); margin: 5px 0 15px;"><p style="font-size: 14px;">Please register your site in the errnio settings section <a href="'.$settingsurl.'">here</a></p></div>');
 	}
 }
 
