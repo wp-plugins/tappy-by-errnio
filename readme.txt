@@ -15,6 +15,8 @@ Tappy offers your mobile site visitors useful web information on any text select
 
 **Tappy** by **errnio** adds a new engagement layer to your site with an addition of informative and action features on any mobile text selection on site text. With every finger long tap, which selects text on your mobile site, Tappy adds several buttons and informative content layers above and below the selected text - buttons to share or search, as well as word definition above and recommended search/content below. This tool enhances user experience, engaging your visitors with your content on mobile. errnio can increase your pages per visit, time spent on site, and improve your over site engagement on mobile. Our plugin automatically scans all articles read on your site, and offers users an intuitive search and content of your popular, top, contextual articles with regards to the words selected.
 
+![Tappy](https://errnio.com/images/gifs/tappy.gif "Tappy")
+
 No additional integration is required, and with a simple plugin we have all we need to make your users more engagement on your site, with a great mobile user experience of your content.
 In addition, without adding **ads** or **banners**, errnio can enhance your revenue. Make **more** money from your site with **no more** banners or ads. No more pushy advertising, be part of the revolution.
 See more about our features and how our product works at <a href="http://errnio.com" target="_blank">errnio.com</a>
