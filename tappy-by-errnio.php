@@ -159,7 +159,7 @@ function tappy_by_errnio_add_settings_menu_option() {
         'Errnio Settings',  //menu title
         'manage_options',   //capability
         'errnio-options',   //menu_slug
-        'gestures_by_errnio_admin_page',  //function
+        'tappy_by_errnio_admin_page',  //function
         plugin_dir_url( __FILE__ ) . '/assets/img/errnio-icon.png'  //icon_url
         //There is another parameter - position
     );
