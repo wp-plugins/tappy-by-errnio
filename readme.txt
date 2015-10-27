@@ -4,7 +4,7 @@ Contributors: errnio
 Tags: Tap, Tappy, text selection, right click, curio, gesture, analytics, bounce rate, click to tweet, content, content analytics, content recommendation, engagement, errnio, exit-intent, Facebook, social buttons, growth, heat map, heatmaps, increase traffic, mobile, mobile web, plugin, scroll box, Share, share bar, share buttons, share image, sharebar, sharing, social, social media buttons, social plugin, social sharing, time spent, tweet button, twitter, whatsapp, widget, wordpress, wikipedia, definition
 Requires at least: 3.0
 Tested up to: 4.3
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,9 @@ info@errnio.com
 
 == Changelog ==
 
+= 1.2 =
+* New design for errnio settings page and admin notice
+
 = 1.1 =
 * Now using native WP api for posting requests
 
@@ -143,5 +146,6 @@ info@errnio.com
 
 == Upgrade Notice ==
 
-**1.1 new version release
-**1.0 version release
+**1.2 New and improved design for errnio settings page and admin notice
+**1.1 New version release
+**1.0 Version release

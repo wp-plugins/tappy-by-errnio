@@ -3,7 +3,7 @@
 Plugin Name: Tappy by errnio
 Plugin URI: http://errnio.com
 Description: Tappy offers your mobile site visitors useful web information on any text selection they perform, enhancing your mobile site experience.
-Version: 1.1
+Version: 1.2
 Author: Errnio
 Author URI: http://errnio.com
 */
@@ -182,18 +182,19 @@ function tappy_by_errnio_add_settings_link_on_plugin($links, $file) {
 }
 
 function tappy_by_errnio_admin_notice() {
+	global $hook_suffix;
 	$needregister = tappy_by_errnio_check_need_register();
 	$settingsurl = admin_url( 'admin.php?page=errnio-options' );
 
-	if($needregister){
-		echo('<div style="font-weight: bold; background-color: #7ad03a; padding: 1px 12px; box-shadow: 0 1px 1px 0 rgba(0,0,0,.1); margin: 5px 0 15px;"><p style="font-size: 14px;">Please register your site in the errnio settings section <a href="'.$settingsurl.'">here</a></p></div>');
+	if($hook_suffix == 'plugins.php' && $needregister){
+		echo("<div class='updated' style='border-radius: 3px;padding: 10px 12px;border-color: #4DB6AC;background-color: #81D8D0;box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);'><h3 style='color:#555;'>Congratulations! Your Tappy plugin is up and running. For more options and features you're welcome to register <a href='".$settingsurl."' style='color: #ECFFFD;text-decoration:underline;'>here</a></h3></div>");
 	}
 }
 
 function tappy_by_errnio_admin_page() {
 	$stylehandle = 'errnio-style';
 	$jshandle = 'errnio-js';
-	wp_register_style('googleFonts', 'http://fonts.googleapis.com/css?family=Exo+2:700,400,200,700italic,300italic,300');
+	wp_register_style('googleFonts', 'https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 	wp_enqueue_style('googleFonts');
 	wp_register_style($stylehandle, plugins_url('assets/css/errnio.css', __FILE__));
 	wp_enqueue_style($stylehandle);
@@ -201,18 +202,16 @@ function tappy_by_errnio_admin_page() {
 	wp_enqueue_script($jshandle);
 	wp_localize_script($jshandle, 'errniowp', array('ajax_url' => admin_url( 'admin-ajax.php' )));
     ?>
-    <div class="wrap">
+    <div class="errnio-settings-wrap">
 		<?php
 		$needregister = tappy_by_errnio_check_need_register();
 		$tagId = get_option(TAPPY_BY_ERRNIO_OPTION_NAME_TAGID);
 
-		echo '<h2>Errnio Options</h2>';
-
 		if (!$needregister) {
-			echo '<div class="bold"><p>Your new errnio plugin is up and running.<br/>For configuration and reports please visit your dashboard at <a href="http://brutus.errnio.com/">brutus.errnio.com</a></p><br/><img src="'.plugins_url('assets/img/logo-366x64.png', __FILE__).'"/></div>';
+			echo '<div class="errnio-settings-screen"><div class="errnio-settings-header2"><div class="container-fluid no-padding max-size"><div class="col-sm-4 col-md-4 col-lg-4"><h1>Welcome</h1></div></div></div><div class="errnio-settings-middle"><div class="container-fluid no-padding max-size"><div class="col-sm-12 col-md-12 col-lg-12"><div class="errnio-info"><br/><p>Your new errnio plugin is up and running.<br/>For configuration and reports please visit your dashboard at <a href="http://brutus.errnio.com/">brutus.errnio.com</a></p></div></div></div></div><div class="errnio-settings-footer"><p>Having trouble? contact us: <a href="mailto:support@errnio.com">support@errnio.com</a></p><a class="errnio-settings-logo" href="http://errnio.com" target="_blank"></a></div></div>';
 		} else {
 			if ($tagId) {
-				echo '<div class="errnio" height="100%" width="100%" data-tagId="'.$tagId.'" data-installName="'.TAPPY_BY_ERRNIO_INSTALLER_NAME.'">';
+				echo '<div id="errnioSettingsAdmin" class="errnio-settings-screen" data-tagId="'.$tagId.'" data-installName="'.TAPPY_BY_ERRNIO_INSTALLER_NAME.'">';
 				include 'assets/includes/errnio-admin.php';
 				echo '</div>';
 			} else {

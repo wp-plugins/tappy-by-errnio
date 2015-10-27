@@ -6,33 +6,49 @@
 
   $(function () {  //Entry Point
     domParts = {
-      enteridmodal: $("#enterid"),
-      successsiteidmodal: $("#successsiteid"),
-      successregistermodal: $("#successregister"),
-      failmodal: $("#fail"),
+      newUserSuccessModal: $("#newUserSuccessModal"),
+      newUserExistsErrorModal: $("#newUserExistsErrorModal"),
+      existingUserSuccessModal: $("#existingUserSuccessModal"),
+      existingUserErrorModal: $("#existingUserErrorModal"),
+      generalErrorModal: $("#generalErrorModal"),
+
       nameInput: $("#nameInput"),
       websiteURLInput: $("#websiteURLInput"),
       emailInput: $("#emailInput"),
       passwordInput: $("#passwordInput"),
       verifyPasswordInput: $("#verifyPasswordInput"),
       submitRegister: $("#submitRegister"),
-      siteIdButton: $("#iHaveId"),
+
       siteIdInput: $("#siteIdInput"),
-      submitSiteId: $("#submitSiteId")
+      submitSiteId: $("#submitSiteId"),
+
+      registerFormBox: $("#newUsersBox"),
+      existingFormBox: $("#existingUsersBox")
     };
 
-    queryParams['tagId'] = $('#register').parent().attr('data-tagId');
-    queryParams['installName'] = $('#register').parent().attr('data-installName');
+    queryParams['tagId'] = $('#errnioSettingsAdmin').attr('data-tagId');
+    queryParams['installName'] = $('#errnioSettingsAdmin').attr('data-installName');
 
+    // Hook GO! buttons to submit forms to submit corresponding forms
     domParts.submitRegister.on('click', onSendRegisterForm);
+    domParts.submitSiteId.on('click', onSendSiteIdForm);
 
-    $('#register').find('.fields > input').on('keydown', function(ev){
+    // Hook Enter Key when using input fields to submit corresponding forms
+    $('#existingUsersBox').find('.errnio-form-box-fields > input').on('keydown', function(ev){
       var keyCcode = ev.keyCode || ev.which;
       if (keyCcode == 13) { //Enter keycode
         onSendRegisterForm(ev);
       }
     });
 
+    $('#newUsersBox').find('.errnio-form-box-fields > input').on('keydown', function(ev){
+      var keyCcode = ev.keyCode || ev.which;
+      if (keyCcode == 13) { //Enter keycode
+        onSendRegisterForm(ev);
+      }
+    });
+
+    // Validate password length
     domParts.passwordInput.on('blur', function(ev){
       var password = domParts.passwordInput.val();
       if (!isValidPassword(password)) {
@@ -43,30 +59,22 @@
       }
     });
 
-    // Enter-it-here click handle
-    domParts.siteIdButton.on('click', function(e) {
-      toggleModal(domParts.enteridmodal, true);
-      e.stopPropagation();
-      e.preventDefault();
-      return false;
+    // General modal behaviour - close for any tap/click outside elements button or input
+    $(".errnio-modal").on('click', onModalClick);
+
+
+    // Set active state toggling between the two boxes
+    domParts.registerFormBox.on('click', function(ev) {
+      domParts.existingFormBox.removeClass("errnio-active");
+      domParts.registerFormBox.addClass("errnio-active");
+    });
+    domParts.existingFormBox.on('click', function(ev) {
+      domParts.registerFormBox.removeClass("errnio-active");
+      domParts.existingFormBox.addClass("errnio-active");
     });
 
-    /* EnterId screen
-     * --------------
-     * */
-    domParts.submitSiteId.on('click', onSendSiteIdForm);
-
-    domParts.enteridmodal.find('.fields > input').on('keydown', function(ev){
-      var keyCcode = ev.keyCode || ev.which;
-      if (keyCcode == 13) { //Enter keycode
-        onSendSiteIdForm(ev);
-      }
-    });
-
-    /* General modal behaviour - close for any tap/click outside elements button or input
-     * -----------------------
-     * */
-    $(".modal").on('click', onModalClick);
+    // Set Register Box as active
+    domParts.registerFormBox.addClass("errnio-active");
 
     //Auto focus first input
     domParts.nameInput.focus();
@@ -151,6 +159,9 @@
     if (!newTagId) {
       $('.inputMsg.siteid').text('Please enter site id');
       return 0;
+    } else if (!isValidErrnioId(newTagId)){
+      toggleModal(domParts.existingUserErrorModal, true);
+      return 0;
     }
 
     var oldTagId = getDataFromUrlParams('tagId');
@@ -187,30 +198,27 @@
   }
 
   function onSubmitError(errorData) {
-    //Set the fail message
-    var failText = 'Please try again :-/';
-    if(errorData.message === 'User already exists with this email') {
-      failText = errorData.message;
+    // Choose fail modal
+    var failModal = domParts.generalErrorModal;
+
+    if(errorData.message.toLowerCase() === 'user already exists with this email') {
+      failModal = domParts.newUserExistsErrorModal;
     }
-    domParts.failmodal.find('.fail-text').text(failText);
 
-    $(".modal").on('click', onModalClick);
+    $(".errnio-modal").on('click', onModalClick);
 
-    toggleModal(domParts.successsiteidmodal, false);
-    toggleModal(domParts.successregistermodal, false);
-    toggleModal(domParts.enteridmodal, false);
-    toggleModal(domParts.failmodal, true);
+    toggleModal(domParts.newUserSuccessModal, false);
+    toggleModal(domParts.existingUserSuccessModal, false);
+    toggleModal(failModal, true);
   }
 
   function onSubmitSuccess(type) {
-    $(".modal").off('click', onModalClick);
-    toggleModal(domParts.enteridmodal, false);
-    toggleModal(domParts.failmodal, false);
+    $(".errnio-modal").off('click', onModalClick);
 
     if (type == 'register') {
-      toggleModal(domParts.successregistermodal, true);
+      toggleModal(domParts.newUserSuccessModal, true);
     } else {
-      toggleModal(domParts.successsiteidmodal, true);
+      toggleModal(domParts.existingUserSuccessModal, true);
     }
   }
 
@@ -229,11 +237,7 @@
   }
 
   function onModalClick(e) {
-    var tag = e.target.tagName.toLowerCase();
-
-    if (tag != 'input' && tag != 'button') {
-      toggleModal($(this), false);
-    }
+    toggleModal($(this), false);
   }
 
   function toggleModal($el, shouldShow) {
@@ -262,6 +266,11 @@
     var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,16}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
     var regex = new RegExp(expression);
     return !!url.match(regex);
+  }
+
+  function isValidErrnioId(errnioId) {
+    var hexRegex = /^[0-9A-F]+$/i;
+    return (hexRegex.test(errnioId) && errnioId.length === 24);
   }
 
   function getPostUrl(type) {
