@@ -2,8 +2,8 @@
 /*
 Plugin Name: Tappy by errnio
 Plugin URI: http://errnio.com
-Description: Tappy offers your mobile site visitors useful web information on any text selection they perform, enhancing your mobile site experience.
-Version: 1.2
+Description: Tap Select enhances text selection on your mobile site with useful information on any text, as well as additional actions.
+Version: 1.4.1
 Author: Errnio
 Author URI: http://errnio.com
 */
@@ -21,6 +21,8 @@ define('TAPPY_BY_ERRNIO_EVENT_NAME_UNINSTALL', 'wordpress_uninstalled');
 
 define('TAPPY_BY_ERRNIO_TAGTYPE_TEMP', 'temporary');
 define('TAPPY_BY_ERRNIO_TAGTYPE_PERM', 'permanent');
+
+define('TAPPY_BY_ERRNIO_OPTION_NAME_NOTIFICATION', 'errnio_notification_status');
 
 /***** Utils ******/
 
@@ -99,6 +101,8 @@ function tappy_by_errnio_deactivate() {
 
 	// Send event - deactivated
 	tappy_by_errnio_send_event(TAPPY_BY_ERRNIO_EVENT_NAME_DEACTIVATE);
+
+	delete_option(TAPPY_BY_ERRNIO_OPTION_NAME_NOTIFICATION);
 }
 
 function tappy_by_errnio_uninstall() {
@@ -117,6 +121,30 @@ register_deactivation_hook( __FILE__, 'tappy_by_errnio_deactivate' );
 register_uninstall_hook( __FILE__, 'tappy_by_errnio_uninstall' );
 
 /***** Client side script load ******/
+
+function tappy_by_errnio_get_first_post_image( $postID ) {
+    $args = array(
+    'numberposts' => 1,
+    'order' => 'ASC',
+    'post_mime_type' => 'image',
+    'post_parent' => $postID,
+    'post_status' => null,
+    'post_type' => 'attachment',
+    );
+
+    $attachments = get_children( $args );
+    if ( $attachments ) {
+        foreach ( $attachments as $attachment ) {
+            $image_attributes = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' )?
+                wp_get_attachment_image_src( $attachment->ID, 'thumbnail' ) : wp_get_attachment_image_src( $attachment->ID, 'full' );
+            if ($image_attributes) {
+                return $image_attributes[0];
+            } else {
+                return null;
+            }
+        }
+    }
+}
 
 function tappy_by_errnio_load_client_script() {
 	$list = 'enqueued';
@@ -137,6 +165,34 @@ function tappy_by_errnio_load_client_script() {
 		$script_url = "//service.errnio.com/loader?tagid=".$tagId;
 		wp_register_script($handle, $script_url, false, '1.0', true);
 		wp_enqueue_script($handle );
+
+		$prev_post = get_adjacent_post( false, '', true);
+        $next_post = get_adjacent_post( false, '', false);
+        $posts_obj = array();
+
+        if ( !empty($next_post) ) {
+        	$next_post_obj = array();
+        	$next_post_obj['title'] = $next_post->post_title;
+        	$next_post_obj['clickUrl'] = get_permalink( $next_post->ID );
+        	$next_post_thumb = tappy_by_errnio_get_first_post_image($next_post->ID);
+        	if ($next_post_thumb) {
+        		$next_post_obj['thumbnailUrl'] = $next_post_thumb;
+        	}
+        	$posts_obj['nextPage'] = $next_post_obj;
+        }
+        if ( !empty($prev_post) ) {
+        	$prev_post_obj = array();
+        	$prev_post_obj['title'] = $prev_post->post_title;
+        	$prev_post_obj['clickUrl'] = get_permalink( $prev_post->ID );
+
+        	$prev_post_thumb = tappy_by_errnio_get_first_post_image($prev_post->ID);
+        	if ($prev_post_thumb) {
+        		$prev_post_obj['thumbnailUrl'] = $prev_post_thumb;
+        	}
+        	$posts_obj['previousPage'] = $prev_post_obj;
+        }
+
+        wp_localize_script($handle, '_errniowp', $posts_obj);
 	}
 }
 
@@ -156,9 +212,9 @@ add_action('wp_enqueue_scripts', 'tappy_by_errnio_load_client_script', 99999 );
 function tappy_by_errnio_add_settings_menu_option() {
     add_menu_page (
         'Errnio Options',   //page title
-        'Errnio Settings',  //menu title
+        'Tappy Settings',  //menu title
         'manage_options',   //capability
-        'errnio-options',   //menu_slug
+        'errnio-options-tappy',   //menu_slug
         'tappy_by_errnio_admin_page',  //function
         plugin_dir_url( __FILE__ ) . '/assets/img/errnio-icon.png'  //icon_url
         //There is another parameter - position
@@ -173,7 +229,7 @@ function tappy_by_errnio_add_settings_link_on_plugin($links, $file) {
     }
 
     if ($file == $this_plugin) {
-		$adminpage_url = admin_url( 'admin.php?page=errnio-options' );
+		$adminpage_url = admin_url( 'admin.php?page=errnio-options-tappy' );
         $settings_link = '<a href="'.$adminpage_url.'">Settings</a>';
         array_unshift($links, $settings_link);
     }
@@ -184,11 +240,26 @@ function tappy_by_errnio_add_settings_link_on_plugin($links, $file) {
 function tappy_by_errnio_admin_notice() {
 	global $hook_suffix;
 	$needregister = tappy_by_errnio_check_need_register();
-	$settingsurl = admin_url( 'admin.php?page=errnio-options' );
+	$settingsurl = admin_url( 'admin.php?page=errnio-options-tappy' );
 
-	if($hook_suffix == 'plugins.php' && $needregister){
-		echo("<div class='updated' style='border-radius: 3px;padding: 10px 12px;border-color: #4DB6AC;background-color: #81D8D0;box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);'><h3 style='color:#555;'>Congratulations! Your Tappy plugin is up and running. For more options and features you're welcome to register <a href='".$settingsurl."' style='color: #ECFFFD;text-decoration:underline;'>here</a></h3></div>");
+	$shouldshow = get_option(TAPPY_BY_ERRNIO_OPTION_NAME_NOTIFICATION);
+
+	if($hook_suffix == 'plugins.php' && $needregister && $shouldshow != 'hide'){
+		$plugin_name = "Tappy";
+		$message_id = "mobile-tappy-errnio";
+		$class = "activated errnio-notice notice is-dismissible";
+		$message = "Congratulations! Your ".$plugin_name." plugin is up and running. For more options and features you're welcome to register <a href='".$settingsurl."' style='color: #ECFFFD;text-decoration:underline;'>here</a>";
+	    echo "<div id=\"$message_id\" class=\"$class\" style='border-radius: 3px;border-color: #4DB6AC;background-color: #81D8D0;box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);'> <p style='color:#555;font-weight:bold;font-size:110%;'>$message</p></div>";
+
+		$jshandle = 'errnio-admin-js';
+		wp_register_script($jshandle, plugins_url('assets/js/errnio-admin.js', __FILE__), array('jquery'));
+		wp_enqueue_script($jshandle);
+		wp_localize_script($jshandle, 'errniowp', array('ajax_url' => admin_url( 'admin-ajax.php' )));
 	}
+}
+
+function tappy_by_errnio_close_notification() {
+	add_option(TAPPY_BY_ERRNIO_OPTION_NAME_NOTIFICATION, 'hide');
 }
 
 function tappy_by_errnio_admin_page() {
@@ -241,3 +312,5 @@ add_action('admin_menu', 'tappy_by_errnio_add_settings_menu_option');
 add_filter('plugin_action_links', 'tappy_by_errnio_add_settings_link_on_plugin', 10, 2);
 add_action('admin_notices', 'tappy_by_errnio_admin_notice');
 add_action('wp_ajax_tappy_by_errnio_register', 'tappy_by_errnio_register_callback');
+
+add_action('wp_ajax_tappy_by_errnio_close_notification', 'tappy_by_errnio_close_notification');

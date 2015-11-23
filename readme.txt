@@ -1,76 +1,63 @@
-=== Tappy by errnio ===
+=== Wordpress Tap Select by errnio ===
 
 Contributors: errnio
-Tags: Tap, Tappy, text selection, right click, curio, gesture, analytics, bounce rate, click to tweet, content, content analytics, content recommendation, engagement, errnio, exit-intent, Facebook, social buttons, growth, heat map, heatmaps, increase traffic, mobile, mobile web, plugin, scroll box, Share, share bar, share buttons, share image, sharebar, sharing, social, social media buttons, social plugin, social sharing, time spent, tweet button, twitter, whatsapp, widget, wordpress, wikipedia, definition
+Tags: Tap, Tap Select, Tappy, text selection, right click, curio, gesture, analytics, bounce rate, click to tweet, content, content analytics, content recommendation, engagement, errnio, exit-intent, Facebook, social buttons, growth, heat map, heatmaps, increase traffic, mobile, mobile web, plugin, scroll box, Share, share bar, share buttons, share image, sharebar, sharing, social, social media buttons, social plugin, social sharing, time spent, tweet button, twitter, whatsapp, widget, wordpress, wikipedia, definition
 Requires at least: 3.0
 Tested up to: 4.3
-Stable tag: 1.2
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Tappy offers your mobile site visitors useful web information on any text selection they perform, enhancing your mobile site experience.
-
+Tap Select enhances text selection on your mobile site with useful information on any text, as well as additional actions.
 
 == Description ==
 
-**Tappy** by **errnio** adds a new engagement layer to your site with an addition of informative and action features on any mobile text selection on site text. With every finger long tap, which selects text on your mobile site, Tappy adds several buttons and informative content layers above and below the selected text - buttons to share or search, as well as word definition above and recommended search/content below. This tool enhances user experience, engaging your visitors with your content on mobile. errnio can increase your pages per visit, time spent on site, and improve your over site engagement on mobile. Our plugin automatically scans all articles read on your site, and offers users an intuitive search and content of your popular, top, contextual articles with regards to the words selected.
+**Tap Select** by **errnio** adds a new engagement layer to your site with an addition of informative and action features on any mobile text selection on site text. With every finger long tap, which selects text on your mobile site, Tap Select adds several buttons and informative content layers above and below the selected text - buttons to share or search, as well as word definition above and recommended search/content below. This tool enhances user experience, engaging your visitors with your content on mobile. errnio can increase your pages per visit, time spent on site, and improve your over site engagement on mobile. Our plugin automatically scans all articles read on your site, and offers users an intuitive search and content of your popular, top, contextual articles with regards to the words selected.
 
 No additional integration is required, and with a simple plugin we have all we need to make your users more engagement on your site, with a great mobile user experience of your content.
-In addition, without adding **ads** or **banners**, errnio can enhance your revenue. Make **more** money from your site with **no more** banners or ads. No more pushy advertising, be part of the revolution.
-See more about our features and how our product works at <a href="http://errnio.com" target="_blank">errnio.com</a>
+In addition, without adding **ads** or **banners**, errnio can enhance your revenue. Make **more** money from your site with **no more** banners or ads. No more pushy advertising, be part of the revolution. See more about our features and how our product works at <a href="http://errnio.com" target="_blank">errnio.com</a>
 
 = Features =
 
-**Tappy** main features include the following items and actions:
+**Tap Select** main features include the following items and actions:
 
-* **Automatic Search Content Recommendation** - Tappy recommendations are displayed below a selected text. Tappy's code (powered by **errnio**) semantically analyzes your article, indexing your site content along the way, to better recommend follow-on search and content to your site users, using Tappy. This information will be display in a small overlay under any selected word.
-* **Word or Phrase Definition** - Tappy definitions are displayed above the selected text. Upon selection of the text, tappy offers a relevant definition of the item from a variety of open sources throughout the internet.
+* **Automatic Search Content Recommendation** - Tap Select recommendations are displayed below a selected text. Tap Select's code (powered by **errnio**) semantically analyzes your article, indexing your site content along the way, to better recommend follow-on search and content to your site users, using Tap Select. This information will be display in a small overlay under any selected word.
+* **Word or Phrase Definition** - Tap Select definitions are displayed above the selected text. Upon selection of the text, Tap Select offers a relevant definition of the item from a variety of open sources throughout the internet.
 * **Share & Search Buttons** - Next to the selected text, we also offer share and search buttons for quick and easy actions.
-* **Content Monetization** - Tappy recommended information layers above can also include recommendations from around the web. To be eligible for this revenue program please register with us.
+* **Content Monetization** - Tap Select recommended information layers above can also include recommendations from around the web. To be eligible for this revenue program please register with us.
 
-We also feature monetization options for selected publisher sites, with the following features:
+We also feature **monetization** options for selected publisher sites, where it is possible to make money through this plugin, with the following features:
 
 * **Web Search** - a web search box is added to the top of the screen. An additional layer of content and recommended actions is added, labeled "top hits". This serves users with promoted actions and content helping you as a site owner looking to make profit from advertising, to earn revenue off exiting traffic in a seamless and unobtrusive way with no banners or ads.
 * **Text Selection** - enhanced with a simple addition of promoted actions like search, share or related content. Much like our search offers, these promoted actions enable you as a site owner to add incremental revenue to the site with no banners or ads.
-* **Bottom bar** - An additional bottom bar is displayed to your site, providing options of browsing related content, sharing, quick links to popular exit sites, and a new tab to continue browsing with no ads.
 
-To be eligible for our revenue program please make sure register with us.
+**ATTENTION**
+To be eligible for our revenue program please make sure to follow relevant instructions after installation. 
+If you encounter any problems or issues, contact us at support@errnio.com
 
 = How it Works =
-
-The **errnio plugin** reaches out to errnio servers and includes the errnio **gesture recognition code**. The gesture recognition code taps into your visitor gestures, performed on your site, and analyses which errnio engagement action or monetization unit will work effectively. errnio works with various 3rd party advertisers by connecting the right offers to the right gesture in the right context in and the right time - **ONLY** and **EXCLUSIVELY** within the errnio gesture functions. We never inject ads into your site!
-Using the unique **errnio** plugin maximizes your full engagement and monetization potential on mobile web with no banners or taking any more of your site real-estate.
+The **errnio plugin** reaches out to errnio servers and includes the errnio **web recognition code**. The recognition code taps into your visitor actions, performed on your site, and analyses which errnio engagement action or monetization unit will work effectively. 
 
 = Advantages =
+Make sure to get your errnio ID and Sign up to our service after installation, to take advantage of all of errnio’s features and options, along with your unique errnio ID for tracking. Gain access to:
 
-* Improve engagement metrics of your mobile site such as Time Spent, Pages per Session, or Bounce Rate.
-* Reach "Best of Brand" user experience levels and bring your site to par with the best sites out there.
-* Create a new monetization stream with non-intrusive, intent-driven promotions and offers.
-* Customize your selection of features to fit your site requirements.
-* Gain useful insights using our analytics for gestures.
-* Works on all leading mobile platforms, browsers and devices.
-
-Make sure to sign up to our service to gain access to:
-
-* Troubleshooting and support
-* Revenue reporting and accounts management
-* Customisation options
-
+* Troubleshooting and Support
+* Revenue Reporting and Account Management 
+* Customisation Options
+* Additional Features and Products 
 
 == Installation ==
-
-Installing the errnio Tappy plugin is super easy.
+Adding an errnio plugin to your admin page is super easy.
 Here's a quick, easy step by step installation <a href="http://errnio.com/WP/wordpress-instructions.pdf" target="_blank">guide</a>
 
 1. Go to the Plugins tab at your WP admin page and click on Add New.
-2. In the search box type in errnio and click on the "Search Plugins" button.
+2. In the search box type in errnio and click on the Search Plugins button.
 3. Download the plugin.
 4. Activate the plugin.
-5. You should receive a notification on your dashboard, follow the registration instructions there.
+5. You should receive a notification on your dashboard requesting your errnio ID, follow the instructions there.
 
-**Don't forget** to register your site to get a site ID at <a href="http://errnio.com/" target="_blank">errnio</a>!
-
-If you have any problems, contact us at <a href="mailto:support@errnio.com" target="_blank">support@errnio.com</a>
+**ATTENTION**
+To be eligible for our revenue program please make sure to follow relevant instructions after installation. If you encounter any problems or issues, contact us at support@errnio.com
 
 
 == Frequently Asked Questions ==
@@ -128,11 +115,20 @@ info@errnio.com
 
 == Screenshots ==
 
-1. Tappy text selection experience, with definition at the top and related searches at the bottom.
+1. Tap Select text selection experience, with definition at the top and related searches at the bottom.
 2. The default mobile experience (for comparison).
-3. Tappy in action
+3. Tap Select in action
 
 == Changelog ==
+
+= 1.4.1 =
+* Added X to notification bar in plugins page
+
+= 1.4 =
+* Important update. Using wordpress API to allow errnio plugin to support any features turned on in errnio control panel
+
+= 1.3 =
+* Text updates in readme and admin settings page
 
 = 1.2 =
 * New design for errnio settings page and admin notice
@@ -146,6 +142,9 @@ info@errnio.com
 
 == Upgrade Notice ==
 
+**1.4.1 Added X to notification bar in plugins page
+**1.4 Important update. Using wordpress API to allow errnio plugin to support any features turned on in errnio control panel
+**1.3 Text updates in readme and admin settings page
 **1.2 New and improved design for errnio settings page and admin notice
 **1.1 New version release
 **1.0 Version release

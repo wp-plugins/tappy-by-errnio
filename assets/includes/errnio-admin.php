@@ -12,14 +12,14 @@
 				<p><strong>Congratulations, your plugin is now up and running. You can open your website on your iPhone or Android phone and check it out.</strong></p>
 				<p>If you wish to have more control and features, you're welcome to register with us right here. Registration is optional.</p>
 				<p>A Registered user is able to view statistics about the plugin's usage, configure and customise it's appearance and more.</p>
-				<p>If you've already registered with us in the past, you can just paste your errnio Id and this plugin will become a part of your existing account at <a href="https://brutus.errnio.com" target="_blank">errnio.com</a>.</p>
+				<p>If you've already registered with us in the past, you can just paste your errnio ID and this plugin will become a part of your existing account at <a href="https://brutus.errnio.com" target="_blank">errnio.com</a>.</p>
 			</div>
 		</div>
 		<div class="col-sm-6 col-md-6 col-lg-4 col-lg-pull-4">
 			<div id="existingUsersBox" class="errnio-form-box">
 				<div class="errnio-form-box-header">Already have an account?</div>
       		  	<div class="errnio-form-box-fields">
-        			<input id="siteIdInput" type="text" placeholder="Just paste your errnio Id" tabindex="1">
+        			<input id="siteIdInput" type="text" placeholder="Just paste your errnio ID" tabindex="1">
         			<span class="inputMsg siteid"></span>
         			<button id="submitSiteId" type="button">GO!</button>
       		  </div>
@@ -80,7 +80,7 @@
 
 <div id="existingUserSuccessModal" class="errnio-modal">
 	<div class="errnio-modal-container">
-		<p><strong>You've activated your errnio Id successfully! See you at <a href="https://brutus.errnio.com" target="_blank">errnio.com</a></strong></p>
+		<p><strong>You've activated your errnio ID successfully! See you at <a href="https://brutus.errnio.com" target="_blank">errnio.com</a></strong></p>
  	   	<br/>
 		<p>Thank you,<br/>
 		The errnio team.</p>
@@ -89,8 +89,8 @@
 
 <div id="existingUserErrorModal" class="errnio-modal">
 	<div class="errnio-modal-container">
-		<p><strong>Oops, the errnio Id you’re trying to enter doesn’t seem to be valid.</strong></p>
-		<p>Use this option to enter the errnio Id you've received from us via email or you can login to your account at errnio.com and check the installation section.</p>
+		<p><strong>Oops, the errnio ID you’re trying to enter doesn’t seem to be valid.</strong></p>
+		<p>Use this option to enter the errnio ID you've received from us via email or you can login to your account at errnio.com and check the installation section.</p>
 		<p>If you're still having trouble, contact us at <a href="mailto:support@errnio.com">support@errnio.com</a> with your website and/or email address that you've registered with and we'll be happy to assist.</p>
  	   	<br/>
 		<p>Thank you,<br/>
@@ -101,7 +101,7 @@
 <div id="generalErrorModal" class="errnio-modal">
 	<div class="errnio-modal-container">
 		<p><strong>Oops, something isn't working here.</strong></p>
-		<p>Please try again or shoot us an email at <a href="mailto:support@errnio.com">support@errnio.com</a> with your website address and/or errnio Id (if you have it) and we'll be happy to assist.</p>
+		<p>Please try again or shoot us an email at <a href="mailto:support@errnio.com">support@errnio.com</a> with your website address and/or errnio ID (if you have it) and we'll be happy to assist.</p>
  	   	<br/>
 		<p>Thank you,<br/>
 		The errnio team.</p>
